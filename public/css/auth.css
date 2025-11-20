@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #d6e4ff);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+.card {
+    background: white;
+    width: 460px;
+    padding: 55px 50px;
+    border-radius: 32px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+    font-size: 28px;
+    color: #2c3e50;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    height: 56px;
+    padding: 0 22px;
+    border: none;
+    background: #eef4ff;
+    border-radius: 18px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    background: #dfe9ff;
+    box-shadow: 0 0 0 4px rgba(78, 115, 223, 0.25);
+}
+
+.btn {
+    width: 140px;
+    height: 52px;
+    background: #4e73df;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #3b5bc7;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(78, 115, 223, 0.35);
+}
+
+.alert {
+    background: #ffe6e6;
+    color: #e74c3c;
+    padding: 14px;
+    border-radius: 14px;
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+.register-link {
+    margin-top: 35px;
+    color: #7f8c8d;
+    font-size: 15px;
+}
+
+.register-link a {
+    color: #4e73df;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
