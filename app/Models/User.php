@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -21,12 +22,17 @@ class User extends Authenticatable
     // Hash password otomatis
     public function setPasswordAttribute($password)
     {
-        $this->attributes['Password'] = bcrypt($password);
+        // Biar tidak double-hash ketika update
+        if (!empty($password) && !str_starts_with($password, '$2y$')) {
+            $this->attributes['Password'] = bcrypt($password);
+        } else {
+            $this->attributes['Password'] = $password;
+        }
     }
 
-    // Login pakai kolom Email (bukan username)
-    public function getAuthIdentifierName()
+    // Karena nama kolom di DB 'Password' (P besar), override ini
+    public function getAuthPassword()
     {
-        return 'Email';
+        return $this->Password;
     }
 }

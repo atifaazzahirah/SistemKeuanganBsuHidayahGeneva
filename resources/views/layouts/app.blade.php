@@ -7,6 +7,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+
+    <style>
+    .wrapper {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 260px; /* lebar sidebar */
+        flex-shrink: 0;
+    }
+
+    .main-content {
+        margin-left: 260px; /* geser konten */
+        width: calc(100% - 260px);
+    }
+</style>
+
 </head>
 <body>
 
@@ -28,7 +45,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/jenis-sampah" class="nav-link {{ request()->is('jenis-sampah*') ? 'active' : '' }}">
+                <a href="/jenissampah" class="nav-link {{ request()->is('jenisssampah*') ? 'active' : '' }}">
                     <i class="fas fa-recycle"></i> Jenis Sampah
                 </a>
             </li>
@@ -41,7 +58,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
+<div class="main-content container-fluid px-4">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
             <div class="container-fluid">
                 <span class="navbar-text fw-bold">Sistem Bank Sampah Hidayah Geneva</span>
