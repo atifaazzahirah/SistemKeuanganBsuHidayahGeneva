@@ -67,13 +67,19 @@
                         <i class="fas fa-user-circle fa-2x"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">{{ auth()->user()->Username }}</a></li>
+                        <li><a class="dropdown-item" href="#">{{ auth()->user()->name }}</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" onsubmit="return confirmLogout()">
                                 @csrf
-                                <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                <button type="submit" class="dropdown-item text-danger">Keluar</button>
                             </form>
+
+                            <script>
+                            function confirmLogout() {
+                                return confirm('Apakah Anda yakin ingin keluar?');
+                            }
+                            </script>
                         </li>
                     </ul>
                 </div>
@@ -87,5 +93,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+@stack('scripts')
 </body>
 </html>

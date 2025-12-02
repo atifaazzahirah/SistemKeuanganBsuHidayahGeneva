@@ -57,16 +57,6 @@
     </div>
 
     <div class="mb-3">
-        <label for="total_saldo" class="form-label">Total Saldo</label>
-        <input type="number"
-               step="0.01"
-               name="total_saldo"
-               id="total_saldo"
-               class="form-control @error('total_saldo') is-invalid @enderror"
-               value="{{ old('total_saldo', $nasabah->Total_Saldo) }}">
-    </div>
-
-    <div class="mb-3">
         <label for="jml_kk" class="form-label">Jumlah KK</label>
         <input type="number"
                name="jml_kk"

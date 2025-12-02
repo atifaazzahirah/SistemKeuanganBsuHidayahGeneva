@@ -1,0 +1,100 @@
+/* ===========================
+   HEADER TABEL – WARNA #ADB6E8
+   =========================== */
+.table-setoran thead {
+    background: #ADB6E8 !important;
+}
+
+.table-setoran th {
+    color: 
+    #ffffff !important; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    background-color: #ADB6E8 !important;
+}
+
+/* Header Total Tetap Kuning */
+.table-setoran th.bg-total {
+    background: #ADB6E8 !important;
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+/* ===========================
+   NAMA NASABAH + NO INDUK
+   =========================== */
+.nama-nasabah {
+    font-weight: 700;
+    color: #111827 !important; /* hitam */
+    font-size: 1.1rem;
+}
+
+.no-induk {
+    font-size: 0.85rem;
+    color: #444 !important; /* abu gelap */
+}
+
+/* ===========================
+   TANGGAL – HAPUS WARNA HIJAU
+   =========================== */
+.tanggal-setoran {
+    background: #fff !important;
+    color: #6B7280 !important;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ddd;
+}
+
+/* ===========================
+   KOTAK ISI DATA TETAP SEPERTI BIASA
+   =========================== */
+.kg-cell {
+    background: #f8f8ff;
+    font-weight: bold;
+    color: #ADB6E8;
+}
+
+.rp-cell {
+    background: #f2f2ff;
+    font-weight: bold;
+    color: #ADB6E8;
+}
+
+/* ===========================
+   TOMBOL "INPUT SETORAN BARU"
+   WARNA: #A9B1E0
+   =========================== */
+.btn-setoran-baru,
+.btn-success {
+    background-color: #A9B1E0 !important;
+    border-color: #A9B1E0 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.btn-setoran-baru:hover,
+.btn-success:hover {
+    background-color: #9ba4d8 !important;
+    border-color: #9ba4d8 !important;
+    transform: translateY(-3px);
+}
+
+/* ===========================
+   TOTAL
+   =========================== */
+.total-kg {
+    background: #F4F6FF !important;
+    font-weight: 900;
+    color: #ADB6E8 !important;;
+    font-size: 1.1rem;
+}
+
+.total-rp {
+    background: #F4F6FF !important;
+    font-weight: 900;
+    color: #ADB6E8 !important;
+    font-size: 1.1rem;
+}

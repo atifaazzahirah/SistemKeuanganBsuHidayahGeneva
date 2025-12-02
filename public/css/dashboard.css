@@ -4,7 +4,7 @@
     left: 0;
     height: 100%;
     width: 250px;
-    background: #6c5ce7;
+    background: #A6ABC8;
     color: white;
     padding-top: 20px;
     z-index: 100;
@@ -27,3 +27,27 @@
 .wrapper { display: flex; min-height: 100vh; }
 .card { border-radius: 15px; }
 .badge { font-size: 0.8em; }
+
+.dashboard-card {
+    border-radius: 1rem;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    transition: 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1.2rem rgba(0,0,0,0.10);
+}
+
+.table thead {
+    background: #f3f4f6;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.card {
+    border-radius: 1rem !important;
+}

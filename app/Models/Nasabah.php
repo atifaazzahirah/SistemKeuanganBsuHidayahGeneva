@@ -10,7 +10,7 @@ class Nasabah extends Model
     use HasFactory;
 
     protected $table = 'nasabah';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'ID_Nasabah';
 
 
@@ -21,5 +21,6 @@ class Nasabah extends Model
         'No_HP',
         'Total_Saldo',
         'jml_kk',
+        
     ];
 }

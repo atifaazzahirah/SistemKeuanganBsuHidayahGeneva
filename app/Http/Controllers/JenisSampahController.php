@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\JenisSampah;
+use App\Models\Setoran;
+use App\Models\Nasabah;
 use Illuminate\Http\Request;
 
 class JenisSampahController extends Controller
 {
     public function index()
     {
-        $jenis_sampah = JenisSampah::all(); 
+        $jenis_sampah = JenisSampah::all();
         return view('jenissampah.index', compact('jenis_sampah'));
     }
 
@@ -37,7 +39,7 @@ class JenisSampahController extends Controller
     public function show(JenisSampah $jenissampah)
     {
         return view('jenissampah.show', [
-        'jenis_sampah' => $jenissampah
+            'jenis_sampah' => $jenissampah
         ]);
     }
 
@@ -58,26 +60,61 @@ class JenisSampahController extends Controller
 
         $dataUpdate = [];
 
+        // Update nama jenis
         if (array_key_exists('jenis_sampah', $validated)) {
             $dataUpdate['Jenis_Sampah'] = $validated['jenis_sampah'];
         }
 
+        // Update harga dan saldo nasabah
         if (array_key_exists('harga_kg', $validated)) {
-            $dataUpdate['Harga_kg'] = $validated['harga_kg'];
+            $oldHarga = $jenisSampah->Harga_kg;
+            $newHarga = $validated['harga_kg'];
+
+            // Ambil semua setoran terkait
+            $setoranTerkait = Setoran::where('id_jenis', $id)->get();
+
+            foreach ($setoranTerkait as $s) {
+                $oldTotal = $s->total_harga;
+                $newTotal = $s->total_berat * $newHarga;
+                $selisih  = $newTotal - $oldTotal;
+
+                // Update saldo nasabah sesuai selisih
+                Nasabah::where('ID_Nasabah', $s->Id_nasabah)
+                    ->increment('Total_Saldo', $selisih);
+
+                // Update total_harga setoran
+                $s->update(['total_harga' => $newTotal]);
+            }
+
+            $dataUpdate['Harga_kg'] = $newHarga;
         }
 
         $jenisSampah->update($dataUpdate);
 
         return redirect()->route('jenissampah.index')
-            ->with('success', 'Data jenis sampah berhasil diperbarui.');
+            ->with('success', 'Data jenis sampah berhasil diperbarui, saldo nasabah otomatis diperbarui.');
     }
 
     public function destroy($id)
     {
-        $jenis_sampah = JenisSampah::findOrFail($id);
-        $jenis_sampah->delete();
+        $jenisSampah = JenisSampah::findOrFail($id);
+
+        // Ambil semua setoran terkait sebelum dihapus
+        $setoranTerkait = Setoran::where('id_jenis', $id)->get();
+
+        foreach ($setoranTerkait as $s) {
+            // Kurangi saldo nasabah
+            Nasabah::where('ID_Nasabah', $s->Id_nasabah)
+                ->decrement('Total_Saldo', $s->total_harga);
+            
+            // Hapus setoran
+            $s->delete();
+        }
+
+        // Hapus jenis sampah
+        $jenisSampah->delete();
 
         return redirect()->route('jenissampah.index')
-            ->with('success', 'Data jenis sampah berhasil dihapus.');
+            ->with('success', 'Data jenis sampah berhasil dihapus, saldo nasabah otomatis diperbarui.');
     }
 }

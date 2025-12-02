@@ -12,7 +12,7 @@
     <div class="title">Bank Sampah Hidayah Geneva</div>
 
     <div class="card">
-        <h2>LOGIN</h2>
+        <h2>MASUK</h2>
 
         @if($errors->any())
             <div class="alert">Email atau password salah!</div>
@@ -24,21 +24,21 @@
             <!-- Email -->
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="Email" value="{{ old('Email') }}" required autofocus>
+                <input type="email" name="email" value="{{ old('email') }}" required autofocus>
             </div>
 
             <!-- Password -->
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="Password" required>
+                <input type="password" name="password" required>
             </div>
+
+            <!-- Lupa Password -->
+            <a href="{{ route('password.request') }}" class="forgot-link">Lupa Password?</a>
 
             <button type="submit" class="btn">Login</button>
         </form>
 
-        <p class="register-link">
-            Belum punya akun? <a href="{{ route('register') }}">Register</a>
-        </p>
     </div>
 </div>
 

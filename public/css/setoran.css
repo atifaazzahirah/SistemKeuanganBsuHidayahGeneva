@@ -1,0 +1,101 @@
+/* Card utama */
+.setoran-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15);
+    overflow: hidden;
+}
+
+/* Card jenis sampah */
+.jenis-card {
+    border-radius: 1rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+}
+
+/* Input berat & nilai */
+.berat-input {
+    font-weight: 500;
+}
+.nilai-rp {
+    font-weight: 600;
+}
+
+/* Tombol */
+.btn-lg {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Form header */
+.form-label {
+    font-weight: 500;
+}
+
+
+/* Alert SweetAlert custom */
+.swal2-popup {
+    font-size: 1rem !important;
+}
+
+/* Header card utama */
+.setoran-card .card.bg-success {
+    background-color: #A9B1E0 !important;   /* warna baru */
+    color: #ffffff !important;              /* warna teks */
+}
+
+
+/* Judul Header Form */
+.text-header-setoran {
+    color: #ffffff; /* contoh: putih */
+}
+
+/* Label Nama Nasabah */
+.label-nasabah {
+    color: #1F2937!important; /* hijau gelap */
+}
+
+/* Judul Detail Sampah */
+.title-detail-sampah {
+    color: #1F2937!important; /* bootstrap success */
+    font-weight: 600;
+}
+
+/* Judul setiap jenis sampah */
+.jenis-title {
+    color: #1F2937!important;
+}
+
+/* Warna angka total per jenis */
+.text-harga {
+    color: #1F2937!important; /* biru */
+    font-weight: 600;
+}
+
+/* Tombol Batal */
+.btn-batal {
+    background-color: #eeebeb;   /* merah */
+    color: #000000;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-batal:hover {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+/* Tombol Simpan */
+.btn-simpan {
+    background-color: #A9B1E0;   /* hijau */
+    color: #fff;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-simpan:hover {
+    background-color: #9399c1;
+    color: #fff;
+}

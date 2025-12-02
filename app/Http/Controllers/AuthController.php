@@ -15,23 +15,19 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    // Tampilkan halaman register
-    public function showRegister()
-    {
-        return view('auth.register');
-    }
-
-    // Proses Login (menggunakan Email)
+    // Proses Login
     public function login(Request $request)
     {
         $request->validate([
-            'Email'    => 'required|email',
-            'Password' => 'required',
+            'email'    => 'required|email',
+            'password' => 'required',
         ]);
 
-        $user = User::where('Email', $request->Email)->first();
+        // Cari user berdasarkan email
+        $user = User::where('email', $request->email)->first();
 
-        if ($user && Hash::check($request->Password, $user->Password)) {
+        // Cek password
+        if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
             $request->session()->regenerate();
 
@@ -39,26 +35,8 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'Email' => 'Email atau password salah.'
+            'email' => 'Email atau password salah.'
         ])->withInput();
-    }
-
-    // Proses Register (Username + Email + Password)
-    public function register(Request $request)
-    {
-        $request->validate([
-            'Username' => 'required|string|max:50|unique:User,Username',
-            'Email'    => 'required|email|unique:User,Email',
-            'Password' => 'required|min:6',
-        ]);
-
-        User::create([
-            'Username' => $request->Username,
-            'Email'    => $request->Email,
-            'Password' => $request->Password, // akan otomatis di-hash karena ada mutator di model
-        ]);
-
-        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
     // Logout

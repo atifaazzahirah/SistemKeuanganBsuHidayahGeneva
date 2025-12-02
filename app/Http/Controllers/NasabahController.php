@@ -28,7 +28,6 @@ class NasabahController extends Controller
             'no_induk'    => 'required|string|max:50|unique:nasabah,No_Induk',
             'alamat'      => 'nullable|string',
             'no_hp'       => 'nullable|string|max:20',
-            'total_saldo' => 'nullable|numeric',
             'jml_kk'      => 'nullable|integer',
         ]);
 
@@ -37,7 +36,6 @@ class NasabahController extends Controller
             'No_Induk'    => $validated['no_induk'],
             'Alamat'      => $validated['alamat']      ?? null,
             'No_HP'       => $validated['no_hp']       ?? null,
-            'Total_Saldo' => $validated['total_saldo'] ?? 0,
             'jml_kk'      => $validated['jml_kk']      ?? null,
         ]);
 
@@ -70,7 +68,6 @@ public function show(Nasabah $nasabah)
             // kalau PK di tabel nasabah BUKAN 'id', ganti 'id' di atas dengan nama PK yang benar
             'alamat'      => 'nullable|string',
             'no_hp'       => 'nullable|string|max:20',
-            'total_saldo' => 'nullable|numeric',
             'jml_kk'      => 'nullable|integer',
         ]);
 
@@ -87,9 +84,6 @@ public function show(Nasabah $nasabah)
         }
         if (array_key_exists('no_hp', $validated)) {
             $dataUpdate['No_HP'] = $validated['no_hp'];
-        }
-        if (array_key_exists('total_saldo', $validated)) {
-            $dataUpdate['Total_Saldo'] = $validated['total_saldo'];
         }
         if (array_key_exists('jml_kk', $validated)) {
             $dataUpdate['jml_kk'] = $validated['jml_kk'];

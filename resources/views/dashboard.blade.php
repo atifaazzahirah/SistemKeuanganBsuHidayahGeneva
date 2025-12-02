@@ -1,105 +1,104 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Overview')
 
 @section('content')
-<div class="row g-4">
-    <!-- Card Total Nasabah -->
-    <div class="col-md-4">
-        <div class="card text-center border-0 shadow-sm">
-            <div class="card-body">
-                <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                <h5>Total Nasabah</h5>
-                <h2 class="text-primary">68</h2>
-                <small class="text-muted">+4 Nasabah baru</small>
+<div class="container py-4">
+
+    <h4 class="fw-bold mb-4">Dashboard Overview</h4>
+
+    <!-- ROW 1 -->
+    <div class="row g-4 mb-4">
+
+        <!-- Total Nasabah -->
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm dashboard-card">
+                <small class="text-muted">Total Nasabah</small>
+                <h2 class="fw-bold mt-2">{{ $totalNasabah }}</h2>
+                <div class="text-muted mt-2">
+                    <i class="bi bi-person-add"></i> + {{ $nasabahBaruHariIni }} Nasabah baru
+                </div>
+
             </div>
         </div>
+
+        <!-- Total Sampah Bulan Ini -->
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm dashboard-card border-primary">
+                <small class="text-muted">Total Sampah (Kg)</small>
+                <h2 class="fw-bold mt-2">{{ number_format($totalSampahBulanIni, 0) }}</h2>
+                <div class="text-muted mt-2">
+                    <i class="bi bi-calendar-week"></i> Bulan ini
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Nilai -->
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm dashboard-card border-warning">
+                <small class="text-muted">Total Nilai (Rp)</small>
+                <h2 class="fw-bold mt-2">Rp {{ number_format($totalSaldo, 0, ',', '.') }}</h2>
+                <div class="text-muted mt-2">
+                    <i class="bi bi-coin"></i> Saldo Tersedia
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Card Total Sampah (Kg) -->
-    <div class="col-md-4">
-        <div class="card text-center border-0 shadow-sm">
-            <div class="card-body">
-                <i class="fas fa-weight-hanging fa-3x text-info mb-3"></i>
-                <h5>Total Sampah (Kg)</h5>
-                <h2 class="text-info">1.255</h2>
-                <small class="text-muted">Bulan ini</small>
+    <div class="row g-4">
+
+        <!-- Statistik Sampah Masuk -->
+        <div class="col-md-4">
+            <div class="card p-4 shadow-sm">
+                <h6 class="fw-bold">Sampah Masuk (Kg)</h6>
+
+                @foreach($statSampah as $s)
+                    <div class="d-flex justify-content-between mt-3 border-bottom pb-2">
+                        <div>
+                            <strong>{{ $s->jenis->Jenis_Sampah }}</strong>  
+                            <small class="text-muted d-block">{{ $s->transaksi }} transaksi</small>
+                        </div>
+                        <strong>{{ number_format($s->total_kg, 0) }} Kg</strong>
+                    </div>
+                @endforeach
+
             </div>
         </div>
+
+        <!-- Tabel harga & jenis sampah -->
+        <div class="col-md-8">
+            <div class="card p-4 shadow-sm">
+                <h6 class="fw-bold">Informasi Harga & Jenis Sampah</h6>
+                <small class="text-muted">Harga berlaku mulai: 1 November 2025</small>
+
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Jenis Sampah</th>
+                            <th>Harga / Kg</th>
+                            <th>Terima</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($jenisSampah as $j)
+                        <tr>
+                            <td>{{ $j->Jenis_Sampah }}</td>
+                            <td>Rp {{ number_format($j->Harga_kg, 0, ',', '.') }}</td>
+                            <td><i class="bi bi-check-circle text-success">&#10004</i></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <div class="text-end">
+                    <a href="{{ route('jenissampah.index') }}" class="text-primary">
+                        Lihat Semua Kategori Sampah →
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Card Total Nilai (Rp) -->
-    <div class="col-md-4">
-        <div class="card text-center border-0 shadow-sm">
-            <div class="card-body">
-                <i class="fas fa-money-bill-wave fa-3x text-warning mb-3"></i>
-                <h5>Total Nilai (Rp)</h5>
-                <h2 class="text-warning">1.882.500</h2>
-                <small class="text-muted">Rp600.750 bulan ini</small>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Ringkasan Jenis Sampah Bulan Ini -->
-<div class="card mt-4 shadow-sm">
-    <div class="card-header bg-white">
-        <h5 class="mb-0">Ringkasan Jenis Sampah Bulan Ini</h5>
-    </div>
-    <div class="card-body">
-        <div class="row text-center">
-            <div class="col">
-                <h4 class="text-success">450 kg</h4>
-                <p>Kertas/Kardus</p>
-            </div>
-            <div class="col">
-                <h4 class="text-warning">305 kg</h4>
-                <p>Plastik</p>
-            </div>
-            <div class="col">
-                <h4 class="text-info">380 kg</h4>
-                <p>Kardus</p>
-            </div>
-            <div class="col">
-                <h4 class="text-danger">120 kg</h4>
-                <p>Logam</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Aktivitas Terakhir -->
-<div class="card mt-4 shadow-sm">
-    <div class="card-header bg-white d-flex justify-content-between">
-        <h5 class="mb-0">Aktivitas Terakhir</h5>
-        <a href="/setoran" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
-    </div>
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>NASABAH</th>
-                        <th>TANGGAL</th>
-                        <th>TOTAL BERAT</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Saridi</td>
-                        <td>10 Nov 2024</td>
-                        <td>11 Kg</td>
-                        <td><span class="badge bg-success">Selesai</span></td>
-                    </tr>
-                    <tr>
-                        <td>IPG Novo</td>
-                        <td>09 Nov 2024</td>
-                        <td>15 Kg</td>
-                        <td><span class="badge bg-success">Selesai</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
 @endsection
