@@ -9,13 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // Tampilkan halaman login
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    // Proses Login
     public function login(Request $request)
     {
         $request->validate([
@@ -23,10 +21,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Cari user berdasarkan email
         $user = User::where('email', $request->email)->first();
-
-        // Cek password
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
             $request->session()->regenerate();
@@ -39,7 +34,6 @@ class AuthController extends Controller
         ])->withInput();
     }
 
-    // Logout
     public function logout(Request $request)
     {
         Auth::logout();

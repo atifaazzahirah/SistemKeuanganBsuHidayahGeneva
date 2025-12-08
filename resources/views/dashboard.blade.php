@@ -5,11 +5,7 @@
 <div class="container py-4">
 
     <h4 class="fw-bold mb-4">Dashboard Overview</h4>
-
-    <!-- ROW 1 -->
     <div class="row g-4 mb-4">
-
-        <!-- Total Nasabah -->
         <div class="col-md-4">
             <div class="card p-4 shadow-sm dashboard-card">
                 <small class="text-muted">Total Nasabah</small>
@@ -20,8 +16,6 @@
 
             </div>
         </div>
-
-        <!-- Total Sampah Bulan Ini -->
         <div class="col-md-4">
             <div class="card p-4 shadow-sm dashboard-card border-primary">
                 <small class="text-muted">Total Sampah (Kg)</small>
@@ -31,8 +25,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Total Nilai -->
         <div class="col-md-4">
             <div class="card p-4 shadow-sm dashboard-card border-warning">
                 <small class="text-muted">Total Nilai (Rp)</small>
@@ -46,8 +38,6 @@
     </div>
 
     <div class="row g-4">
-
-        <!-- Statistik Sampah Masuk -->
         <div class="col-md-4">
             <div class="card p-4 shadow-sm">
                 <h6 class="fw-bold">Sampah Masuk (Kg)</h6>
@@ -64,8 +54,6 @@
 
             </div>
         </div>
-
-        <!-- Tabel harga & jenis sampah -->
         <div class="col-md-8">
             <div class="card p-4 shadow-sm">
                 <h6 class="fw-bold">Informasi Harga & Jenis Sampah</h6>

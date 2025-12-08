@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<h2>REKAP TOTAL PER JENIS SAMPAH</h2>
+<h2>REKAP TOTAL SAMPAH</h2>
 
 <p style="text-align:center;">
     @if ($tanggal == "Semua Tanggal")

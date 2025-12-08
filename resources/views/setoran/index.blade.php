@@ -7,8 +7,6 @@
 @section('content')
 <div class="setoran-index-container">
     <div class="container">
-
-        <!-- HEADER -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="setoran-header-title">
                 <i class="fas fa-recycle me-3"></i>Data Setoran Sampah
@@ -17,8 +15,6 @@
                 <i class="fas fa-plus-circle me-2"></i> Input Setoran Baru
             </a>
         </div>
-
-<!-- FORM FILTER -->
 <div class="card shadow-sm p-4 mb-4">
     <form method="GET" action="{{ route('setoran.index') }}" class="row g-3">
         
@@ -117,9 +113,6 @@
 </script>
 
 </div>
-
-
-        <!-- CARD TABEL -->
         <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
             <div class="card-body p-0">
                 <div class="table-responsive">

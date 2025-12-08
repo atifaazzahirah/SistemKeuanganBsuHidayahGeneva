@@ -8,8 +8,6 @@
 @section('content')
 <div class="container py-4">
     <div class="card setoran-card">
-        
-        <!-- HEADER -->
         <div class="card bg-success text-white text-center py-4">
             <h3 class="mb-0 fs-4 text-header-setoran">FORM EDIT SETORAN</h3>
         </div>
@@ -18,8 +16,6 @@
             <form id="formSetoran" action="{{ route('setoran.update', $group_id) }}" method="POST">
                 @csrf
                 @method('PUT')
-
-                <!-- HEADER FORM -->
                 <div class="row g-4 mb-5">
                     <div class="col-md-5">
                         <label class="form-label label-nasabah">Nama Nasabah</label>

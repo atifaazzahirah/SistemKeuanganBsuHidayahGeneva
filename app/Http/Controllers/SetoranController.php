@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class SetoranController extends Controller
 {
-    // =========================================================
-    // INDEX
-    // =========================================================
 public function index(Request $request)
 {
     $keyword       = $request->keyword;
@@ -37,14 +34,11 @@ public function index(Request $request)
     }
 
     $setoran = $query->orderBy('group_id')->get();
-
-    // **Group per group_id agar data tidak duplikat**
     $setoranGrouped = $setoran->groupBy('group_id');
-
     $jenis_sampah = JenisSampah::orderBy('ID_Jenis')->get();
 
     return view('setoran.index', [
-        'setoranGrouped' => $setoranGrouped, // gunakan ini di Blade
+        'setoranGrouped' => $setoranGrouped, 
         'jenis_sampah'   => $jenis_sampah,
         'keyword'        => $keyword,
         'tanggal_awal'   => $tanggal_awal,
@@ -52,12 +46,6 @@ public function index(Request $request)
     ]);
 }
 
-
-
-
-    // =========================================================
-    // CREATE
-    // =========================================================
     public function create()
     {
         $nasabah = Nasabah::orderBy('Nama')->get();
@@ -66,9 +54,6 @@ public function index(Request $request)
         return view('setoran.create', compact('nasabah', 'jenis_sampah'));
     }
 
-    // =========================================================
-    // STORE
-    // =========================================================
     public function store(Request $request)
     {
         $request->validate([
@@ -108,9 +93,6 @@ public function index(Request $request)
             ->with('success', "Setoran berhasil ditambahkan!");
     }
 
-    // =========================================================
-    // EDIT
-    // =========================================================
     public function edit($group_id)
     {
         $group = Setoran::where('group_id', $group_id)->get();
@@ -138,9 +120,6 @@ public function index(Request $request)
         ));
     }
 
-    // =========================================================
-    // UPDATE
-    // =========================================================
     public function update(Request $request, $group_id)
     {
         $request->validate([
@@ -194,9 +173,6 @@ public function index(Request $request)
             ->with('success', 'Setoran berhasil diperbarui!');
     }
 
-    // =========================================================
-    // DELETE
-    // =========================================================
     public function destroy($group_id)
     {
         $items = Setoran::where('group_id', $group_id)->get();
@@ -219,9 +195,7 @@ public function index(Request $request)
             ->with('success', 'Setoran berhasil dihapus & saldo nasabah otomatis berkurang!');
     }
 
-    // =========================================================
-    // EXPORT PDF REKAP PER JENIS
-    // =========================================================
+ 
     public function exportRekapJenisPdf(Request $request)
     {
         $filter = $request->filter; // all | single | range
