@@ -1,8 +1,8 @@
-# Sistem Pencatatan dan Pelaporan Keuangan Bank Sampah Unit Geneva Hidayah
+# Sistem Pencatatan dan Pelaporan Keuangan Bank Sampah Unit Hidayah Geneva
 
 ## Deskripsi Proyek
 
-Sistem Penyetoran Bank Sampah Unit Geneva Hidayah adalah aplikasi berbasis web yang dikembangkan menggunakan framework Laravel. Sistem ini bertujuan untuk membantu pengelolaan data penyetoran sampah, data nasabah, jenis sampah, serta laporan penyetoran secara terstruktur, cepat, dan akurat.
+Sistem Penyetoran Bank Sampah Unit Geneva Hidayah adalah aplikasi berbasis web yang dikembangkan menggunakan **framework Laravel**. Sistem ini bertujuan untuk membantu pengelolaan data penyetoran sampah, data nasabah, jenis sampah, serta laporan penyetoran secara terstruktur, cepat, dan akurat.
 
 Aplikasi ini dirancang untuk mendukung kegiatan operasional Bank Sampah Unit Geneva Hidayah agar lebih efektif dibandingkan dengan pencatatan manual.
 
@@ -17,6 +17,7 @@ Aplikasi ini dirancang untuk mendukung kegiatan operasional Bank Sampah Unit Gen
 * Laporan penyetoran berdasarkan periode tertentu
 * Sistem berbasis web dengan Laravel
 
+---
 
 ## Teknologi yang Digunakan
 
@@ -36,7 +37,7 @@ Pastikan perangkat Anda telah memenuhi persyaratan berikut:
 * Composer
 * MySQL / MariaDB
 * Web server (XAMPP / Laragon)
-* Git 
+* Git
 
 ---
 
@@ -44,11 +45,14 @@ Pastikan perangkat Anda telah memenuhi persyaratan berikut:
 
 ### 1. Clone atau Unduh Proyek
 
-Clone repository folder server lokal Anda:
+Clone repository :
 
 ```bash
 git clone https://github.com/atifaazzahirah/SistemKeuanganBsuHidayahGeneva.git
-
+```
+```
+```
+---
 ### 2. Install Dependency Laravel
 
 Masuk ke folder proyek lalu jalankan perintah berikut:
@@ -56,7 +60,6 @@ Masuk ke folder proyek lalu jalankan perintah berikut:
 ```bash
 composer install
 ```
-
 ---
 
 ### 3. Konfigurasi File Environment
@@ -82,11 +85,16 @@ Database **tidak disertakan langsung di repository**. Silakan unduh file databas
 > **Link Google Drive Database:**
 > https://drive.google.com/drive/folders/1B6xJVdGChH4vkuaZ0d4mrNcFL73Ots7C?usp=drive_link 
 
+---
 
 ### 5. Import Database
 
 1. Buka **phpMyAdmin**
-2. Buat database baru :
+2. Buat database baru, misalnya:
+
+   ```
+   ```
+
 bsu_hidayah_geneva
 
 ````
