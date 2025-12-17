@@ -128,6 +128,9 @@ Akses aplikasi melalui browser:
 
 ```
 http://127.0.0.1:8000
+login dengan menggunakan
+admin2@example.com
+password : 12345678
 ```
 
 ---
