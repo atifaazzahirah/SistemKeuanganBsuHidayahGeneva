@@ -19,49 +19,58 @@
     @csrf
 
     <div class="mb-3">
-        <label for="nama" class="form-label">Nama</label>
+        <label for="nama" class="form-label">Nama <span class="text-danger">*</span></label>
         <input type="text"
                name="nama"
                id="nama"
                class="form-control @error('nama') is-invalid @enderror"
                value="{{ old('nama') }}"
+               placeholder="Masukkan nama nasabah"
                required>
     </div>
 
     <div class="mb-3">
-        <label for="no_induk" class="form-label">No Induk</label>
+        <label for="no_induk" class="form-label">No Induk <span class="text-danger">*</span></label>
         <input type="text"
                name="no_induk"
                id="no_induk"
                class="form-control @error('no_induk') is-invalid @enderror"
                value="{{ old('no_induk') }}"
+               placeholder="Masukkan nomor induk"
                required>
     </div>
 
     <div class="mb-3">
-        <label for="alamat" class="form-label">Alamat</label>
+        <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
         <textarea name="alamat"
                   id="alamat"
                   rows="3"
-                  class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat') }}</textarea>
+                  class="form-control @error('alamat') is-invalid @enderror"
+                  placeholder="Masukkan alamat lengkap"
+                  required>{{ old('alamat') }}</textarea>
     </div>
 
     <div class="mb-3">
-        <label for="no_hp" class="form-label">No HP</label>
+        <label for="no_hp" class="form-label">No HP <span class="text-danger">*</span></label>
         <input type="text"
                name="no_hp"
                id="no_hp"
                class="form-control @error('no_hp') is-invalid @enderror"
-               value="{{ old('no_hp') }}">
+               value="{{ old('no_hp') }}"
+               placeholder="08xxxxxxxxxx"
+               required>
     </div>
 
     <div class="mb-3">
-        <label for="jml_kk" class="form-label">Jumlah KK</label>
+        <label for="jml_kk" class="form-label">Jumlah KK <span class="text-danger">*</span></label>
         <input type="number"
                name="jml_kk"
                id="jml_kk"
                class="form-control @error('jml_kk') is-invalid @enderror"
-               value="{{ old('jml_kk') }}">
+               value="{{ old('jml_kk') }}"
+               min="1"
+               placeholder="Masukkan jumlah KK"
+               required>
     </div>
 
     <button type="submit" class="btn btn-primary">Simpan</button>

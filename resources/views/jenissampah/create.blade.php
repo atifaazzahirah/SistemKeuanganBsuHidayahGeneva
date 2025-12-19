@@ -19,23 +19,31 @@
     @csrf
 
     <div class="mb-3">
-        <label for="jenis_sampah" class="form-label">Jenis Sampah</label>
+        <label for="jenis_sampah" class="form-label">
+            Jenis Sampah <span class="text-danger">*</span>
+        </label>
         <input type="text"
                name="jenis_sampah"
                id="jenis_sampah"
                class="form-control @error('jenis_sampah') is-invalid @enderror"
                value="{{ old('jenis_sampah') }}"
+               placeholder="Contoh: Plastik, Kertas, Logam"
                required>
     </div>
 
     <div class="mb-3">
-        <label for="harga_kg" class="form-label">Harga per Kg</label>
+        <label for="harga_kg" class="form-label">
+            Harga per Kg <span class="text-danger">*</span>
+        </label>
         <input type="number"
                step="0.01"
+               min="0"
                name="harga_kg"
                id="harga_kg"
                class="form-control @error('harga_kg') is-invalid @enderror"
-               value="{{ old('harga_kg') }}">
+               value="{{ old('harga_kg') }}"
+               placeholder="Contoh: 2500"
+               required>
     </div>
 
     <button type="submit" class="btn btn-primary">Simpan</button>
