@@ -44,8 +44,7 @@
                value="{{ old('harga_kg') }}"
                placeholder="Contoh: 2500"
                required>
-    </div>
-
+</div>
     <button type="submit" class="btn btn-primary">Simpan</button>
     <a href="{{ route('jenissampah.index') }}" class="btn btn-secondary">Batal</a>
 </form>

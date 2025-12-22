@@ -48,7 +48,6 @@
 
                 <div class="row g-4">
                     @php $counter = 0; @endphp
-
                     @foreach($jenis_sampah as $j)
                         @if($counter % 3 == 0 && $counter > 0)
                             </div><div class="row g-4 mt-3">
@@ -101,7 +100,6 @@
 
 <link rel="stylesheet" href="{{ asset('css/setoran.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -112,10 +110,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnSimpan = document.getElementById('btnSimpan');
     const btnBatal = document.getElementById('btnBatal');
 
+    // Tampilkan nomor induk otomatis
     select.addEventListener('change', function () {
         noInduk.value = this.selectedOptions[0]?.dataset.noInduk || '';
     });
+    inputs.forEach(input => {
+        input.addEventListener('keydown', function (e) {
+            if (e.key === '-' || e.key === 'e') {
+                e.preventDefault();
+            }
+        });
+        input.addEventListener('input', function () {
+            if (this.value < 0) {
+                this.value = 0;
+            }
+            hitung(); // tetap hitung otomatis
+        });
 
+    });
     function hitung() {
         inputs.forEach(input => {
             const berat = parseFloat(input.value) || 0;
@@ -130,9 +142,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 : '0';
         });
     }
-
-    inputs.forEach(i => i.addEventListener('input', hitung));
-
     btnBatal.addEventListener('click', function (e) {
         e.preventDefault();
 
@@ -149,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
     btnSimpan.addEventListener('click', function () {
 
         if (!select.value)

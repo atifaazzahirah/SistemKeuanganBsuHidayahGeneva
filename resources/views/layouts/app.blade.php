@@ -46,12 +46,12 @@
             </li>
             <li class="nav-item">
                 <a href="/jenissampah" class="nav-link {{ request()->is('jenisssampah*') ? 'active' : '' }}">
-                    <i class="fas fa-recycle"></i> Jenis Sampah
+                    <i class="fas fa-recycle"></i> Data Sampah
                 </a>
             </li>
             <li class="nav-item">
                 <a href="/setoran" class="nav-link {{ request()->is('setoran*') ? 'active' : '' }}">
-                    <i class="fas fa-trash-alt"></i> Setoran
+                    <i class="fas fa-trash-alt"></i> Data Setoran
                 </a>
             </li>
         </ul>

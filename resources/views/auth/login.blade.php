@@ -36,7 +36,7 @@
             <!-- Lupa Password -->
             <a href="{{ route('password.request') }}" class="forgot-link">Lupa Password?</a>
 
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn">Masuk</button>
         </form>
 
     </div>

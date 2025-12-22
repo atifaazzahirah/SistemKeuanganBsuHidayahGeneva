@@ -114,6 +114,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
     const inputs = document.querySelectorAll('.berat-input');
     const select = document.getElementById('nasabahSelect');
     const noInduk = document.getElementById('noInduk');
@@ -121,24 +122,50 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnSimpan = document.getElementById('btnSimpan');
     const btnBatal = document.getElementById('btnBatal');
 
+    // Tampilkan no induk otomatis (jika ada)
     select?.addEventListener('change', function () {
         noInduk.value = this.selectedOptions[0]?.dataset.noInduk || '';
     });
+    inputs.forEach(input => {
+        input.addEventListener('keydown', function (e) {
+            if (e.key === '-' || e.key === 'e') {
+                e.preventDefault();
+            }
+        });
+        input.addEventListener('input', function () {
+            if (this.value < 0) {
+                this.value = 0;
+            }
+            hitung(); // hitung ulang otomatis
+        });
 
+    });
+
+    // Hitung subtotal harga
     function hitung() {
         inputs.forEach(input => {
             const berat = parseFloat(input.value) || 0;
             const harga = parseFloat(input.dataset.harga) || 0;
             const subtotal = berat * harga;
-            const nilaiEl = input.closest('.col-6').nextElementSibling.querySelector('.nilai-rp');
-            if (nilaiEl) nilaiEl.value = subtotal > 0 ? subtotal.toLocaleString('id-ID') : '0';
+
+            const nilaiEl = input.closest('.col-6')
+                ?.nextElementSibling
+                ?.querySelector('.nilai-rp');
+
+            if (nilaiEl) {
+                nilaiEl.value = subtotal > 0
+                    ? subtotal.toLocaleString('id-ID')
+                    : '0';
+            }
         });
     }
-    inputs.forEach(i => i.addEventListener('input', hitung));
+
     hitung();
 
+    // Tombol batal
     btnBatal.addEventListener('click', function (e) {
         e.preventDefault();
+
         Swal.fire({
             title: 'Batalkan perubahan?',
             text: "Perubahan tidak akan disimpan",
@@ -147,30 +174,37 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmButtonText: 'Ya, Batal',
             cancelButtonText: 'Lanjut Edit'
         }).then((res) => {
-            if (res.isConfirmed) window.location.href = "{{ route('setoran.index') }}";
+            if (res.isConfirmed) {
+                window.location.href = "{{ route('setoran.index') }}";
+            }
         });
     });
 
-        btnSimpan.addEventListener('click', function () {
+    // Tombol simpan / update
+    btnSimpan.addEventListener('click', function () {
 
-            let adaData = [...inputs].some(i => (parseFloat(i.value) || 0) > 0);
-            if (!adaData)
-                return Swal.fire('Error', 'Isi minimal 1 jenis sampah!', 'error');
+        let adaData = [...inputs].some(i => (parseFloat(i.value) || 0) > 0);
+        if (!adaData) {
+            return Swal.fire('Error', 'Isi minimal 1 jenis sampah!', 'error');
+        }
 
-            Swal.fire({
-                title: 'Konfirmasi Update',
-                html: `<div class="text-start">
-                    <p><strong>Nasabah:</strong> {{ $first->nasabah->Nama }}</p>
-                    <p><strong>No. Induk:</strong> {{ $first->nasabah->No_Induk }}</p>
-                    <p><strong>Tanggal:</strong> ${document.querySelector('input[name="Tgl_Penjualan"]').value}</p>
-                </div>`,
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Update!'
-            }).then((res) => {
-                if (res.isConfirmed) form.submit();
-            });
+        Swal.fire({
+            title: 'Konfirmasi Update',
+            html: `<div class="text-start">
+                <p><strong>Nasabah:</strong> {{ $first->nasabah->Nama }}</p>
+                <p><strong>No. Induk:</strong> {{ $first->nasabah->No_Induk }}</p>
+                <p><strong>Tanggal:</strong> ${document.querySelector('input[name="Tgl_Penjualan"]').value}</p>
+            </div>`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Update!'
+        }).then((res) => {
+            if (res.isConfirmed) {
+                form.submit();
+            }
         });
+    });
+
 });
 </script>
 @endsection
